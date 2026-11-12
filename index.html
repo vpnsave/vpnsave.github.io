@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>СЕЙВ VPN — официальный сайт</title>
+<meta name="description" content="СЕЙВ VPN — сервис защищённого подключения к интернету с безлимитным трафиком. Подключение, продление и поддержка — в официальном боте @vpnsave в Telegram.">
+<meta name="theme-color" content="#0b0b0c">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="СЕЙВ VPN">
+<meta property="og:title" content="СЕЙВ VPN — официальный сайт">
+<meta property="og:description" content="Безлимитный трафик, подключение за минуту, поддержка в Telegram.">
+<meta property="og:locale" content="ru_RU">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230b0b0c'/%3E%3Ctext x='32' y='42' font-family='Arial Black,Arial' font-weight='900' font-size='30' text-anchor='middle' fill='%23ffcc00'%3ES%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #0b0b0c;
+    --card: #151517;
+    --card-2: #1c1c1f;
+    --line: #26262b;
+    --text: #ffffff;
+    --muted: #a3a3ab;
+    --dim: #6c6c74;
+    --y: #ffcc00;
+    --y-press: #e6b800;
+    --header: 56px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header) + 12px); -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-tap-highlight-color: transparent;
+  }
+  a { color: inherit; }
+
+  /* ---------- шапка ---------- */
+  .bar {
+    position: sticky; top: 0; z-index: 20;
+    height: calc(var(--header) + env(safe-area-inset-top));
+    padding: env(safe-area-inset-top) max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left));
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(11, 11, 12, .82);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s;
+  }
+  .bar.scrolled { border-bottom-color: var(--line); }
+  .logo { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-weight: 900; font-size: 20px; letter-spacing: -.02em; }
+  .logo b { background: var(--y); color: #000; font-size: 10px; font-weight: 800; letter-spacing: .04em; padding: 2px 5px; border-radius: 4px; transform: translateY(-5px); }
+  .more {
+    width: 44px; height: 44px; margin-right: -10px;
+    display: grid; place-items: center;
+    background: none; border: 0; border-radius: 12px; color: var(--text); cursor: pointer;
+  }
+  .more:active, .more[aria-expanded="true"] { background: var(--card-2); }
+  .more svg { width: 22px; height: 22px; }
+
+  .menu {
+    position: absolute; right: max(12px, env(safe-area-inset-right)); top: calc(100% + 6px);
+    width: min(260px, calc(100vw - 24px));
+    padding: 6px; margin: 0; list-style: none;
+    background: var(--card-2); border: 1px solid var(--line); border-radius: 16px;
+    box-shadow: 0 18px 40px rgba(0,0,0,.55);
+    transform-origin: top right;
+    opacity: 0; transform: scale(.96) translateY(-4px); pointer-events: none;
+    transition: opacity .16s ease, transform .16s ease;
+  }
+  .menu.open { opacity: 1; transform: none; pointer-events: auto; }
+  .menu a { display: block; padding: 12px 14px; border-radius: 10px; text-decoration: none; font-size: 15px; }
+  .menu a:active { background: #26262b; }
+  .menu hr { border: 0; border-top: 1px solid var(--line); margin: 6px 8px; }
+  .menu .small { color: var(--muted); font-size: 14px; }
+
+  /* ---------- первый экран ---------- */
+  .hero {
+    min-height: calc(100vh - var(--header));
+    min-height: calc(100svh - var(--header) - env(safe-area-inset-top));
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 24px 16px 72px; text-align: center; position: relative;
+    background: radial-gradient(120% 60% at 50% 0%, rgba(255, 204, 0, .14), transparent 60%);
+  }
+  .hero-card { width: 100%; max-width: 380px; }
+  .thanks { display: inline-block; color: var(--y); font-weight: 600; font-size: 15px; margin: 0 0 10px; }
+  .hero h1 { font-size: clamp(28px, 8vw, 36px); line-height: 1.12; letter-spacing: -.02em; margin: 0 0 14px; }
+  .hero p.lead { color: var(--muted); font-size: 16px; margin: 0 0 28px; }
+  .cta {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; min-height: 58px; padding: 14px 20px;
+    background: var(--y); color: #000; text-decoration: none;
+    font-weight: 700; font-size: 18px; border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(255, 204, 0, .22);
+    transition: transform .1s ease, background-color .15s ease;
+    user-select: none; -webkit-user-select: none;
+  }
+  .cta:active { transform: scale(.97); background: var(--y-press); }
+  .cta svg { width: 22px; height: 22px; flex: none; }
+  .proof { margin: 16px 0 0; font-size: 13px; color: var(--dim); }
+  .proof strong { color: var(--muted); font-weight: 600; }
+  .down {
+    position: absolute; bottom: calc(18px + env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%);
+    color: var(--dim); font-size: 13px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px;
+  }
+
+  /* ---------- остальные блоки ---------- */
+  section.block { max-width: 640px; margin: 0 auto; padding: 56px 16px 8px; }
+  .block h2 { font-size: 24px; letter-spacing: -.01em; margin: 0 0 8px; }
+  .block > p { color: var(--muted); margin: 0 0 20px; }
+  .cards { display: grid; gap: 10px; }
+  @media (min-width: 560px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px; }
+  .card .ic { font-size: 22px; line-height: 1; margin-bottom: 10px; }
+  .card h3 { font-size: 16px; margin: 0 0 4px; }
+  .card p { font-size: 14px; color: var(--muted); margin: 0; }
+
+  .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; counter-reset: s; }
+  .steps li { counter-increment: s; display: flex; gap: 14px; align-items: flex-start; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px; }
+  .steps li::before { content: counter(s); flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--y); color: #000; font-weight: 800; font-size: 14px; display: grid; place-items: center; }
+  .steps b { display: block; font-size: 15px; }
+  .steps span { font-size: 14px; color: var(--muted); }
+
+  .faq details { background: var(--card); border: 1px solid var(--line); border-radius: 16px; margin-bottom: 10px; }
+  .faq summary { list-style: none; cursor: pointer; padding: 16px 44px 16px 16px; font-weight: 600; font-size: 15px; position: relative; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: var(--y); font-size: 22px; font-weight: 400; transition: transform .2s; }
+  .faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+  .faq details p { margin: 0; padding: 0 16px 16px; color: var(--muted); font-size: 14px; }
+
+  .contacts { display: grid; gap: 10px; }
+  .contacts a { display: flex; justify-content: space-between; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px; text-decoration: none; }
+  .contacts a span { color: var(--muted); font-size: 14px; }
+  .contacts a b { color: var(--y); font-weight: 600; }
+
+  .final { text-align: center; padding-top: 48px; }
+  .final .cta { max-width: 380px; margin: 0 auto; }
+
+  footer {
+    max-width: 640px; margin: 56px auto 0; padding: 24px 16px calc(28px + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--line); color: var(--dim); font-size: 13px; text-align: center;
+  }
+  footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; margin-bottom: 10px; }
+  footer nav a { color: var(--muted); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header class="bar" id="bar">
+  <a class="logo" href="#top" aria-label="СЕЙВ VPN — наверх">SAVE<b>VPN</b></a>
+  <button class="more" id="moreBtn" aria-label="Меню" aria-haspopup="true" aria-expanded="false" aria-controls="menu">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+  </button>
+  <ul class="menu" id="menu" role="menu">
+    <li><a role="menuitem" href="#about">О сервисе</a></li>
+    <li><a role="menuitem" href="#how">Как подключить</a></li>
+    <li><a role="menuitem" href="#faq">Вопросы и ответы</a></li>
+    <li><a role="menuitem" href="#support">Поддержка</a></li>
+    <li><hr></li>
+    <li><a role="menuitem" class="small" href="privacy.html">Политика конфиденциальности</a></li>
+    <li><a role="menuitem" class="small" href="terms.html">Правила использования</a></li>
+  </ul>
+</header>
+
+<main>
+  <!-- Первый экран: всё, что нужно, без прокрутки -->
+  <section class="hero" id="top">
+    <div class="hero-card">
+      <p class="thanks">Спасибо за переход!</p>
+      <h1>Доступ к сервису Save</h1>
+      <p class="lead">Нажмите на кнопку ниже, чтобы открыть официальный бот в Telegram и активировать +1&nbsp;месяц доступа.</p>
+      <a class="cta" href="https://t.me/vpnsave">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.94 4.3 18.9 19.04c-.23 1.03-.84 1.29-1.7.8l-4.7-3.46-2.27 2.18c-.25.25-.46.46-.94.46l.34-4.8 8.74-7.9c.38-.34-.08-.53-.59-.19L6.97 12.93 2.32 11.48c-1.01-.32-1.03-1.01.21-1.5L20.7 2.98c.84-.31 1.58.2 1.24 1.32Z"/></svg>
+        Открыть в Telegram
+      </a>
+      <p class="proof"><strong>286 000+</strong> пользователей в месяц · бот @vpnsave</p>
+    </div>
+    <a class="down" href="#about">Что это за сервис
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </a>
+  </section>
+
+  <section class="block" id="about">
+    <h2>О сервисе</h2>
+    <p>СЕЙВ VPN — сервис защищённого подключения к интернету. Трафик идёт через зашифрованный канал, поэтому в публичных Wi-Fi сетях в кафе, аэропортах и отелях ваши данные не видны посторонним. Подключение, продление и поддержка — в одном Telegram-боте, без отдельных сайтов и личных кабинетов.</p>
+    <div class="cards">
+      <div class="card"><div class="ic">⚡️</div><h3>Безлимитный трафик</h3><p>Никаких ограничений по объёму — смотрите видео и работайте сколько нужно.</p></div>
+      <div class="card"><div class="ic">💬</div><h3>Всё в Telegram</h3><p>Ключ, продление и история подписки — в боте, который уже у вас в телефоне.</p></div>
+      <div class="card"><div class="ic">🛟</div><h3>Живая поддержка</h3><p>Если что-то не работает, пишите в поддержку — помогут настроить.</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="how">
+    <h2>Как подключить</h2>
+    <p>Займёт около минуты.</p>
+    <ol class="steps">
+      <li><div><b>Откройте бот @vpnsave</b><span>Кнопка «Открыть в Telegram» вверху страницы, затем «Старт».</span></div></li>
+      <li><div><b>Получите ключ</b><span>Бот выдаст ключ доступа и подскажет, какое приложение установить для вашего устройства.</span></div></li>
+      <li><div><b>Подключитесь</b><span>Вставьте ключ в приложение и нажмите «Подключить».</span></div></li>
+    </ol>
+  </section>
+
+  <section class="block faq" id="faq">
+    <h2>Вопросы и ответы</h2>
+    <details><summary>Как получить +1 месяц?</summary><p>Перейдите в бот по кнопке на этой странице и нажмите «Старт». Бонусный месяц начисляется в боте, условия акции бот показывает сразу.</p></details>
+    <details><summary>На каких устройствах работает?</summary><p>iPhone и iPad, Android, Windows и macOS. Бот подскажет приложение для каждого устройства.</p></details>
+    <details><summary>Есть ли ограничения по трафику?</summary><p>Нет, трафик безлимитный.</p></details>
+    <details><summary>Нужно ли регистрироваться?</summary><p>Нет. Аккаунтом служит ваш Telegram — без почты и паролей.</p></details>
+    <details><summary>Что делать, если не подключается?</summary><p>Напишите в поддержку @savepomosh: опишите устройство и что происходит, вам помогут.</p></details>
+  </section>
+
+  <section class="block" id="support">
+    <h2>Поддержка и контакты</h2>
+    <p>Мы на связи в Telegram.</p>
+    <div class="contacts">
+      <a href="https://t.me/vpnsave"><span>Бот сервиса</span><b>@vpnsave</b></a>
+      <a href="https://t.me/vpn_save"><span>Новости и акции</span><b>@vpn_save</b></a>
+      <a href="https://t.me/savepomosh"><span>Техподдержка</span><b>@savepomosh</b></a>
+    </div>
+  </section>
+
+  <section class="block final">
+    <a class="cta" href="https://t.me/vpnsave">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.94 4.3 18.9 19.04c-.23 1.03-.84 1.29-1.7.8l-4.7-3.46-2.27 2.18c-.25.25-.46.46-.94.46l.34-4.8 8.74-7.9c.38-.34-.08-.53-.59-.19L6.97 12.93 2.32 11.48c-1.01-.32-1.03-1.01.21-1.5L20.7 2.98c.84-.31 1.58.2 1.24 1.32Z"/></svg>
+      Забрать +1 месяц
+    </a>
+  </section>
+</main>
+
+<footer>
+  <nav>
+    <a href="privacy.html">Политика конфиденциальности</a>
+    <a href="terms.html">Правила использования</a>
+    <a href="#support">Контакты</a>
+  </nav>
+  © 2026 СЕЙВ VPN
+</footer>
+
+<script>
+(function () {
+  var btn = document.getElementById('moreBtn');
+  var menu = document.getElementById('menu');
+  var bar = document.getElementById('bar');
+
+  function setOpen(open) {
+    menu.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    setOpen(!menu.classList.contains('open'));
+  });
+  menu.addEventListener('click', function (e) {
+    if (e.target.closest('a')) setOpen(false);
+  });
+  document.addEventListener('click', function (e) {
+    if (!menu.contains(e.target)) setOpen(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { setOpen(false); btn.focus(); }
+  });
+  window.addEventListener('scroll', function () {
+    bar.classList.toggle('scrolled', window.scrollY > 4);
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>
